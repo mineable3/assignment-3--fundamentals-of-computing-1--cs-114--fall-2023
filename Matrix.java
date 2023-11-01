@@ -2,6 +2,8 @@ public class Matrix {
 
   private int size;
   private int[][] matrix;
+  private final String ANSI_RESET = "\u001B[0m";
+  private final String ANSI_YELLOW = "\u001B[33m";
 
   public Matrix(int _size) {
     matrix = new int[_size][_size];
@@ -17,7 +19,13 @@ public class Matrix {
   public void printMatrix() {
     for(int i = 0; i < size; i++) {
       for(int j = 0; j < size; j++) {
-        System.out.print("\t" + matrix[i][j]);
+
+        //printing the untouched diagonal in yellow
+        if((i + j) == (size - 1)) {
+          System.out.print(ANSI_YELLOW + "\t" + matrix[i][j] + ANSI_RESET);
+        } else {
+          System.out.print("\t" + matrix[i][j]);
+        }
       }
       System.out.println();
     }
@@ -38,6 +46,7 @@ public class Matrix {
       for(int j = 0; j < size; j++) {
         swap(i, j, ((size - 1) - i), ((size - 1) - j));
 
+        //reseting the diagonal we don't want to change
         if(j == currentImmutable) {
           swap(i, j, ((size - 1) - i), ((size - 1) - j));
           currentImmutable--;

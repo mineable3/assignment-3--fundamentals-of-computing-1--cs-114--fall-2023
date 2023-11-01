@@ -7,7 +7,7 @@ public class RunMatrix {
     int size;
     Scanner scan  = new Scanner(System.in);
 
-    System.out.print("\tPlease enter the size of your matrix: ");
+    System.out.print("\n\tPlease enter the size of your matrix: ");
 
     try {
       size = scan.nextInt();
