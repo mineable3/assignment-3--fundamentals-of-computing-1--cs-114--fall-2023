@@ -17,14 +17,14 @@ public class Matrix {
   }
 
   public void printMatrix() {
-    for(int i = 0; i < size; i++) {
-      for(int j = 0; j < size; j++) {
+    for(int row = 0; row < size; row++) {
+      for(int column = 0; column < size; column++) {
 
         //printing the untouched diagonal in yellow
-        if((i + j) == (size - 1)) {
-          System.out.print(ANSI_YELLOW + "\t" + matrix[i][j] + ANSI_RESET);
+        if((row + column) == (size - 1)) {
+          System.out.print(ANSI_YELLOW + "\t" + matrix[row][column] + ANSI_RESET);
         } else {
-          System.out.print("\t" + matrix[i][j]);
+          System.out.print("\t" + matrix[row][column]);
         }
       }
       System.out.println();
@@ -32,25 +32,30 @@ public class Matrix {
   }
 
   public void populateMatrix() {
-    for(int i = 0; i < size; i++) {
-      for(int j = 0; j < size; j++) {
-        matrix[i][j] = (i * size) + j + 1;
+    for(int row = 0; row < size; row++) {
+      for(int column = 0; column < size; column++) {
+        matrix[row][column] = (row * size) + column + 1;
       }
     }
   }
 
   public void flipMatrix() {
-    int currentImmutable = size - 1;
 
-    for(int i = 0; i < (size / 2); i++) {
-      for(int j = 0; j < size; j++) {
-        swap(i, j, ((size - 1) - i), ((size - 1) - j));
+    for(int row = 0; row < (size / 2); row++) {
+      for(int column = 0; column < size; column++) {
+        swap(row, column, ((size - 1) - row), ((size - 1) - column));
 
         //reseting the diagonal we don't want to change
-        if(j == currentImmutable) {
-          swap(i, j, ((size - 1) - i), ((size - 1) - j));
-          currentImmutable--;
+        if(column == (size - row - 1)) {
+          swap(row, column, ((size - 1) - row), ((size - 1) - column));
         }
+      }
+    }
+
+    //swapping the middle row of an odd matrix
+    if((size % 2) != 0) {
+      for(int column = 0; column < (size - 1) / 2; column++) {
+        swap((int)(size / 2), column, (int)(size / 2), ((size - 1) - column));
       }
     }
   }
