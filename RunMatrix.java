@@ -14,7 +14,7 @@ public class RunMatrix {
       scan.close();
     } catch (Exception e) {
       scan.close();
-      throw new InputMismatchException("Input must be an int");
+      throw new InputMismatchException("Input must be a positive int");
     }
 
     System.out.printf("\n\tYour matrix is %d x %d\n", size, size);
