@@ -55,7 +55,7 @@ public class Matrix {
     //swapping the middle row of an odd matrix
     if((size % 2) != 0) {
       for(int column = 0; column < (size - 1) / 2; column++) {
-        swap((int)(size / 2), column, (int)(size / 2), ((size - 1) - column));
+        swap((size / 2), column, (size / 2), ((size - 1) - column));
       }
     }
   }
